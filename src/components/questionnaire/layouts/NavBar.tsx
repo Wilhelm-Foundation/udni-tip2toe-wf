@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import ApiStatus from '../../ApiStatus';
+import LanguageSelector from './LanguageSelector';
 
 export default function NavBar() {
   return (
@@ -12,6 +13,7 @@ export default function NavBar() {
           <Link to="/help" className="text-white">
             Help
           </Link>
+          <LanguageSelector></LanguageSelector>
         </div>
         <div>
           <ApiStatus />
