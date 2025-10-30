@@ -7,11 +7,11 @@ interface IResult {
 }
 async function lookupHpoTerm(term: string): Promise<IResult> {
   const ret = await fetch(
-    `https://hpo.jax.org/api/hpo/term/${encodeURI(term)}`,
+   `https://ontology.jax.org/api/hp/terms/${encodeURI(term)}`
   );
   if (ret.ok) {
     const res = (await ret.json()) as TermResponse;
-    return { term, label: res.details.name };
+    return { term, label: res.name };
   } else {
     return { error: 'Unknown HPO term' };
   }
@@ -31,9 +31,9 @@ export interface TermsResponse {
 
 async function searchHpoTerms(query: string): Promise<TermsResponse> {
   const ret = await fetch(
-    `https://hpo.jax.org/api/hpo/search/?q=${encodeURI(
-      query,
-    )}&max=10&offset=0&category=terms`,
+    `https://ontology.jax.org/api/hp/search?q=${encodeURI(
+      query
+    )}&limit=10&page=0`
   );
   if (ret.ok) {
     const res = (await ret.json()) as TermsResponse;
